@@ -2,8 +2,8 @@ package websocket
 
 import (
 	"fmt"
-	"github.com/HydroProtocol/hydro-sdk-backend/common"
-	"github.com/HydroProtocol/hydro-sdk-backend/utils"
+	"github.com/D3athgr1p/hydro-sdk-backend/common"
+	"github.com/D3athgr1p/hydro-sdk-backend/utils"
 	"github.com/shopspring/decimal"
 	"sync"
 )

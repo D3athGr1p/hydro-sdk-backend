@@ -3,7 +3,7 @@ package types
 import (
 	"math/big"
 
-	"github.com/HydroProtocol/hydro-sdk-backend/utils"
+	"github.com/D3athgr1p/hydro-sdk-backend/utils"
 )
 
 func HexToAddress(s string) Address { return BytesToAddress(utils.Hex2Bytes(s)) }

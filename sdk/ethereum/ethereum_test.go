@@ -2,9 +2,9 @@ package ethereum
 
 import (
 	"encoding/hex"
-	"github.com/HydroProtocol/hydro-sdk-backend/sdk"
-	"github.com/HydroProtocol/hydro-sdk-backend/sdk/crypto"
-	"github.com/HydroProtocol/hydro-sdk-backend/utils"
+	"github.com/D3athgr1p/hydro-sdk-backend/sdk"
+	"github.com/D3athgr1p/hydro-sdk-backend/sdk/crypto"
+	"github.com/D3athgr1p/hydro-sdk-backend/utils"
 	"github.com/stretchr/testify/suite"
 	"testing"
 )

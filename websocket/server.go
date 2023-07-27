@@ -3,7 +3,7 @@ package websocket
 import (
 	"context"
 	"encoding/json"
-	"github.com/HydroProtocol/hydro-sdk-backend/utils"
+	"github.com/D3athgr1p/hydro-sdk-backend/utils"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"

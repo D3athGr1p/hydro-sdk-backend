@@ -1,7 +1,7 @@
 package crypto
 
 import (
-	"github.com/HydroProtocol/hydro-sdk-backend/utils"
+	"github.com/D3athgr1p/hydro-sdk-backend/utils"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

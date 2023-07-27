@@ -1,12 +1,17 @@
+
 package launcher
 
 import (
 	"crypto/ecdsa"
 	"database/sql"
-	"github.com/HydroProtocol/hydro-sdk-backend/sdk/crypto"
-	"github.com/HydroProtocol/hydro-sdk-backend/sdk/signer"
-	"github.com/HydroProtocol/hydro-sdk-backend/sdk/types"
-	"github.com/HydroProtocol/hydro-sdk-backend/utils"
+
+	"github.com/ethereum/go-ethereum/common"
+	ethType "github.com/ethereum/go-ethereum/core/types"
+
+	"github.com/D3athgr1p/hydro-sdk-backend/sdk/crypto"
+	// "github.com/D3athgr1p/hydro-sdk-backend/sdk/signer"
+	// "github.com/HydroProtocol/hydro-sdk-backend/sdk/types"
+	"github.com/D3athgr1p/hydro-sdk-backend/utils"
 	"sync"
 )
 
@@ -28,16 +33,19 @@ func (s *localSignService) AfterSign() {
 }
 
 func (s *localSignService) Sign(launchLog *LaunchLog) string {
-	transaction := types.NewTransaction(
+	
+	transaction := ethType.NewTransaction(
 		uint64(s.nonce),
-		launchLog.To,
+		common.HexToAddress(launchLog.To),
 		utils.DecimalToBigInt(launchLog.Value),
 		uint64(launchLog.GasLimit),
 		utils.DecimalToBigInt(launchLog.GasPrice.Decimal),
 		utils.Hex2Bytes(launchLog.Data[2:]),
 	)
 
-	signedTransaction, err := signer.SignTx(transaction, s.privateKey)
+	// signedTransaction, err := signer.SignTx(transaction, s.privateKey)
+	signers := ethType.HomesteadSigner{}
+	signedTransaction, err := ethType.SignTx(transaction, signers, s.privateKey)
 
 	if err != nil {
 		utils.Errorf("sign transaction error: %v", err)
@@ -50,11 +58,13 @@ func (s *localSignService) Sign(launchLog *LaunchLog) string {
 	}
 
 	launchLog.Hash = sql.NullString{
-		String: utils.Bytes2HexP(signer.Hash(signedTransaction)),
+		String: signedTransaction.Hash().String(),
 		Valid:  true,
 	}
 
-	return utils.Bytes2HexP(signer.EncodeRlp(signedTransaction))
+	// return utils.Bytes2HexP(signer.EncodeRlp(signedTransaction))
+	bty, _ := signedTransaction.MarshalBinary()
+	return utils.Bytes2HexP(bty)
 }
 
 func NewDefaultSignService(privateKeyStr string, getNonce func(string) (int, error)) ISignService {

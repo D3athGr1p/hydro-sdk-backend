@@ -3,8 +3,8 @@ package websocket
 import (
 	"context"
 	"encoding/json"
-	"github.com/HydroProtocol/hydro-sdk-backend/common"
-	"github.com/HydroProtocol/hydro-sdk-backend/utils"
+	"github.com/D3athgr1p/hydro-sdk-backend/common"
+	"github.com/D3athgr1p/hydro-sdk-backend/utils"
 )
 
 // StartConsumer initializes a queue instance and ready events from it
